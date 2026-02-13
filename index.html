@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day, Langga! 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 50%, #6c3483 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Floating hearts background */
+        .floating-heart {
+            position: absolute;
+            font-size: 25px;
+            animation: floatUp 8s infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        .heart-icon {
+            font-size: 80px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            10%, 30% {
+                transform: scale(0.9);
+            }
+            20%, 40%, 60%, 80% {
+                transform: scale(1.1);
+            }
+            50%, 70% {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            font-size: 48px;
+            background: linear-gradient(135deg, #9b59b6 0%, #6c3483 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .date-display {
+            font-size: 20px;
+            color: #8e44ad;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .message {
+            font-size: 22px;
+            color: #555;
+            line-height: 1.6;
+            margin: 25px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(155,89,182,0.1) 0%, rgba(142,68,173,0.1) 100%);
+            border-radius: 15px;
+            border-left: 4px solid #9b59b6;
+        }
+
+        .question {
+            font-size: 28px;
+            color: #8e44ad;
+            font-weight: bold;
+            margin: 30px 0 20px 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            min-height: 70px;
+        }
+
+        button {
+            padding: 18px 40px;
+            font-size: 22px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            color: white;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 6px 20px rgba(155,89,182,0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 8px 30px rgba(155,89,182,0.6);
+            }
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 35px rgba(155,89,182,0.7);
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+        }
+
+        #noBtn:hover {
+            transform: scale(0.95);
+        }
+
+        .gif-container {
+            margin: 30px 0;
+            font-size: 100px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .response-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #9b59b6;
+            font-style: italic;
+            min-height: 30px;
+            font-weight: 600;
+        }
+
+        /* Success screen styles */
+        .success-screen {
+            display: none;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-screen h2 {
+            font-size: 56px;
+            color: #9b59b6;
+            margin: 20px 0;
+        }
+
+        .success-screen .big-heart {
+            font-size: 120px;
+            animation: heartbeat 1s ease-in-out infinite;
+        }
+
+        .love-message {
+            font-size: 24px;
+            color: #555;
+            line-height: 1.8;
+            margin: 25px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(155,89,182,0.1) 0%, rgba(142,68,173,0.1) 100%);
+            border-radius: 15px;
+        }
+
+        .hearts-explosion {
+            position: fixed;
+            font-size: 40px;
+            pointer-events: none;
+            animation: explode 1.5s ease-out forwards;
+            z-index: 1000;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(1) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            animation: sparkleAnim 1s ease-out forwards;
+        }
+
+        @keyframes sparkleAnim {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        /* Letter envelope animation */
+        .envelope {
+            font-size: 60px;
+            margin: 20px 0;
+            display: inline-block;
+            animation: envelope 2s ease-in-out infinite;
+        }
+
+        @keyframes envelope {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-10px) rotate(-5deg);
+            }
+            75% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        .countdown {
+            font-size: 18px;
+            color: #8e44ad;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <script>
+        // Create floating hearts - purple themed
+        const heartEmojis = ['💜', '💕', '💖', '💝', '💓', '🟣', '💟','😏'];
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 8 + 's';
+                heart.style.animationDuration = (6 + Math.random() * 4) + 's';
+                heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+                document.body.appendChild(heart);
+            }, i * 300);
+        }
+    </script>
+
+    <!-- Main container -->
+    <div class="container" id="mainContainer">
+        <div class="heart-icon">💜</div>
+        <h1>Happy Valentine's Day!</h1>
+        <div class="date-display">February 14, 2025</div>
+        
+        <div class="gif-container" id="character">
+            🥰
+        </div>
+        
+        <div class="message">
+            Langga, you make every day feel like Valentine's Day! 
+            You're my sunshine, my happiness, and my everything bahalag 
+            imo ko kanunay awayon sege lang kay love endures man
+            I'm so lucky to have you in my life! 💕
+        </div>
+        
+        <div class="envelope">💌</div>
+        
+        <div class="question">Will you be my Valentine? 💝</div>
+        
+        <div class="buttons-container">
+            <button id="yesBtn" onclick="sayYes()">Yes, always! 💜</button>
+            <button id="noBtn" onclick="sayNo()">Ten years worth of bad luck</button>
+        </div>
+        
+        <div class="response-text" id="responseText"></div>
+        <div class="countdown" id="countdown"></div>
+    </div>
+
+    <!-- Success screen -->
+    <div class="container success-screen" id="successScreen">
+        <div class="big-heart">💜</div>
+        <h2>Yay! 🎉✨</h2>
+        
+        <div class="love-message">
+            <strong>You're my Valentine! 💜</strong><br><br>
+            
+            I wanna be yours, langga! 
+            You make my heart so happy. 
+            I love you more than words can say, kiss ko bi 💜
+            <br><br>
+            Here's to many more Valentine's Days together! 
+            <br>
+            I love you always  and in all ways 💜
+        </div>
+        
+        <div style="font-size: 40px; margin-top: 20px;">
+            😍💜✨🌹💕🎉
+        </div>
+        
+        <div style="margin-top: 30px; font-size: 18px; color: #888;">
+            I love you, langga! 💜
+        </div>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        let yesSize = 1;
+        let noSize = 1;
+        
+        const character = document.getElementById('character');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const responseText = document.getElementById('responseText');
+        const mainContainer = document.getElementById('mainContainer');
+        const successScreen = document.getElementById('successScreen');
+
+        // Cute responses when clicking "No"
+        const responses = [
+            "Are you sure? 🥺",
+            "Think about it, langga! 💭",
+            "I promise to make you happy! 💖",
+            "Please? Pretty please? 🙏💕",
+            "You're making me sad... 😢",
+            "My heart is breaking... 💔",
+            "One more chance? 🥺💝",
+            "I'll buy you your favorite food! 🍕",
+            "I'll give you unlimited hugs! 🤗",
+            "The 'Yes' button is calling you... 💕"
+        ];
+
+        // Characters for different states
+        const sadEmojis = ['😢', '🥺', '😭', '💔'];
+        const happyEmojis = ['🥰', '😏', '💖', '😍'];
+
+        function sayNo() {
+            noClickCount++;
+            
+            // Change character to sad
+            character.textContent = sadEmojis[Math.floor(Math.random() * sadEmojis.length)];
+            character.style.animation = 'none';
+            setTimeout(() => {
+                character.style.animation = 'float 3s ease-in-out infinite';
+            }, 10);
+            
+            // Make yes button bigger
+            yesSize += 0.2;
+            yesBtn.style.transform = `scale(${yesSize})`;
+            
+            // Make no button smaller
+            noSize -= 0.12;
+            noBtn.style.transform = `scale(${noSize})`;
+            
+            // Show response message
+            if (noClickCount <= responses.length) {
+                responseText.textContent = responses[noClickCount - 1];
+            } else {
+                responseText.textContent = "Just click Yes already! 💕";
+            }
+            
+            // Make no button escape (after a few clicks)
+            if (noClickCount > 3) {
+                noBtn.style.position = 'absolute';
+                const randomX = (Math.random() - 0.5) * 200;
+                const randomY = (Math.random() - 0.5) * 100;
+                noBtn.style.transform = `translate(${randomX}px, ${randomY}px) scale(${noSize})`;
+            }
+            
+            // Hide no button completely after enough clicks
+            if (noSize <= 0.2) {
+                noBtn.style.display = 'none';
+                responseText.textContent = "Perfect! Only one choice left! 💕";
+                yesBtn.style.transform = `scale(${yesSize + 0.5})`;
+            }
+            
+            // Reset character to happy after a moment
+            setTimeout(() => {
+                character.textContent = happyEmojis[Math.floor(Math.random() * happyEmojis.length)];
+            }, 2000);
+        }
+
+        function sayYes() {
+            // Create massive hearts explosion - purple themed
+            const heartTypes = ['💜', '💕', '💖', '💝', '💓', '🟣', '💟', '✨'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('hearts-explosion');
+                    heart.textContent = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+                    
+                    const rect = yesBtn.getBoundingClientRect();
+                    heart.style.left = rect.left + rect.width / 2 + 'px';
+                    heart.style.top = rect.top + rect.height / 2 + 'px';
+                    
+                    const angle = (Math.PI * 2 * i) / 50;
+                    const distance = 100 + Math.random() * 200;
+                    heart.style.setProperty('--x', Math.cos(angle) * distance + 'px');
+                    heart.style.setProperty('--y', Math.sin(angle) * distance + 'px');
+                    heart.style.fontSize = (30 + Math.random() * 30) + 'px';
+                    
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 1500);
+                }, i * 20);
+            }
+            
+            // Add sparkles
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.classList.add('sparkle');
+                    sparkle.textContent = '✨';
+                    sparkle.style.left = (Math.random() * window.innerWidth) + 'px';
+                    sparkle.style.top = (Math.random() * window.innerHeight) + 'px';
+                    sparkle.style.fontSize = (20 + Math.random() * 20) + 'px';
+                    document.body.appendChild(sparkle);
+                    
+                    setTimeout(() => sparkle.remove(), 1000);
+                }, i * 50);
+            }
+            
+            // Show success message
+            setTimeout(() => {
+                mainContainer.style.display = 'none';
+                successScreen.style.display = 'block';
+                
+                // Continue adding floating hearts
+                for (let i = 0; i < 30; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.classList.add('floating-heart');
+                        heart.textContent = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+                        heart.style.left = Math.random() * 100 + '%';
+                        heart.style.fontSize = (25 + Math.random() * 30) + 'px';
+                        document.body.appendChild(heart);
+                    }, i * 100);
+                }
+            }, 1000);
+        }
+
+        // Make the No button run away on hover (after a few clicks)
+        noBtn.addEventListener('mouseenter', function() {
+            if (noClickCount > 2 && noSize > 0.3) {
+                const randomX = (Math.random() - 0.5) * 150;
+                const randomY = (Math.random() - 0.5) * 100;
+                this.style.position = 'absolute';
+                this.style.transform = `translate(${randomX}px, ${randomY}px) scale(${noSize})`;
+                
+                responseText.textContent = "Hey! Come back here! 😄";
+            }
+        });
+
+        // Update countdown (optional - shows how long until Valentine's)
+        function updateCountdown() {
+            const valentines = new Date('2025-02-14T00:00:00');
+            const now = new Date();
+            const diff = valentines - now;
+            
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('countdown').textContent = 
+                    `Valentine's Day in ${days} days and ${hours} hours! 💕`;
+            } else {
+                document.getElementById('countdown').textContent = "It's Valentine's Day! 💖";
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 60000); // Update every minute
+    </script>
+</body>
+</html>
